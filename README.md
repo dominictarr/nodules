@@ -249,7 +249,8 @@ More unit tests
 
 nodules exports
 ============
-
+   > nodules = require ('../nodules/lib/nodules');
+   
 	{mappings: [ defaultPath: '' ]
 	, forBrowser: [Function]
 	, forEngine: [Function]
@@ -278,7 +279,14 @@ nodules exports
 
 #ensure: [Function]#
 
-	http://wiki.commonjs.org/wiki/Modules/Async/A
+  require.ensure(['module1','module2'],function cb(require){
+    var module1 = require('module1'),
+	    module1 = require('module1');
+  }
+
+loads array of modules async and callsback when they are ready.
+see http://wiki.commonjs.org/wiki/Modules/Async/A
+
 , runAsMain: [Function]
 , usingEngine: 'node'
 , useLocal: [Function]
