@@ -245,3 +245,53 @@ Dev Progress
 Currently alpha level, issues:
 URI redirection needs to properly change module ids
 More unit tests
+
+
+nodules exports
+============
+
+	{mappings: [ defaultPath: '' ]
+	, forBrowser: [Function]
+	, forEngine: [Function]
+	, ensure: [Function]
+	, runAsMain: [Function]
+	, usingEngine: 'node'
+	, useLocal: [Function]
+	, usePackage: [Function]
+	, getModuleSource: [Function]
+	, getCachePath: [Function]
+	, baseFilePath: 'downloaded-modules'
+	, load: [Function]
+	, protocols: 
+		{ http: [Function]
+		, jar: [Function]
+		, file: [Function]
+		, data: [Function]
+		, zip: [Function]
+		}
+	}
+
+
+ mappings: [ defaultPath: '' ]
+, forBrowser: [Function]
+, forEngine: [Function]
+
+#ensure: [Function]#
+
+	http://wiki.commonjs.org/wiki/Modules/Async/A
+, runAsMain: [Function]
+, usingEngine: 'node'
+, useLocal: [Function]
+, usePackage: [Function]
+, getModuleSource: [Function]
+, getCachePath: [Function]
+, baseFilePath: 'downloaded-modules'
+, load: [Function]
+, protocols: 
+   { http: [Function]
+   , jar: [Function]
+   , file: [Function]
+   , data: [Function]
+   , zip: [Function]
+   }
+

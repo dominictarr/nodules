@@ -6,6 +6,6 @@
 # set the NODULES_PATH where downloaded modules are stored first
 export NODULES_PATH=/path/to/downloaded-modules
 
-node /path/to/lib/nodules.js $1
+node /path/to/lib/nodules.js --debug-brk $1
 
 # I also like to include --debug in the arguments for automatically running with listening for a debugger enabled.
