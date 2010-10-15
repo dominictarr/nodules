@@ -115,20 +115,13 @@ Promise.prototype.wait = function(){
 Deferred.prototype = Promise.prototype;
 // A deferred provides an API for creating and resolving a promise.
 exports.Promise = exports.Deferred = exports.defer = defer;
-function defer(){//it doesn't pass the canceler???
+function defer(){
   return new Deferred();
-  
-/*
-function defer(canceller){
-  return new Deferred(canceller);
-*/
 } 
 
 var contextHandler = exports.contextHandler = {};
 
 function Deferred(canceller){
-	//cancel doesn't work because kriszyp hasn't called it from defer.
-	//actually, reject has the same functionality. this just needs to be refactored!
   var result, finished, isError, waiting = [], handled;
   var promise = this.promise = new Promise();
   var currentContextHandler = contextHandler.getHandler && contextHandler.getHandler();
@@ -179,14 +172,11 @@ function Deferred(canceller){
     }
   }
   // calling resolve will resolve the promise
-	//wow, three synonyms for resolve... isn't that a bit reckless?
   this.resolve = this.callback = this.emitSuccess = function(value){
     notifyAll(value);
   };
   
-	//and, three synonyms for reject! madness!
   // calling error will indicate that the promise failed
-  
   var reject = this.reject = this.errback = this.emitError = function(error, dontThrow){
     isError = true;
     notifyAll(error);
@@ -210,8 +200,7 @@ function Deferred(canceller){
   // provide the implementation of the promise
   this.then = promise.then = function(resolvedCallback, errorCallback, progressCallback){
     var returnDeferred = new Deferred(promise.cancel);
-    var listener = {resolved: resolvedCallback, error: errorCallback, progress: progressCallback, deferred: returnDeferred};
-    //defured is not actually implemented
+    var listener = {resolved: resolvedCallback, error: errorCallback, progress: progressCallback, deferred: returnDeferred}; 
     if(finished){
       notify(listener);
     }
@@ -279,7 +268,7 @@ function perform(value, async, sync){
  */
  
 /**
- * Registers an observer on a promise. 
+ * Registers an observer on a promise.
  * @param value   promise or value to observe
  * @param resolvedCallback function to be called with the resolved value
  * @param rejectCallback  function to be called with the rejection reason
@@ -335,8 +324,6 @@ exports.get = function(target, property){
 exports.post = function(target, methodName, args){
   return perform(target, function(target){
     return target.call(property, args);
-    
-    //where is property defined? this looks like an error.
   },
   function(target){
     return target[methodName].apply(target, args);
@@ -358,6 +345,7 @@ exports.put = function(target, property, value){
     return target[property] = value;
   });
 };
+
 
 /**
  * Waits for the given promise to finish, blocking (and executing other events)
@@ -394,6 +382,8 @@ exports.wait = function(target){
     return target;
   }
 };
+
+
 
 /**
  * Takes an array of promises and returns a promise that is fulfilled once all

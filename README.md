@@ -274,8 +274,14 @@ nodules exports
 
 
  mappings: [ defaultPath: '' ]
-, forBrowser: [Function]
-, forEngine: [Function]
+#forBrowser(): [Function]#
+	exports.forBrowser = function(){
+		return new EnginePackage("browser");
+	};
+#forEngine(engine): [Function]#
+	exports.forEngine = function(engine){
+		return new EnginePackage(engine);
+	};
 
 #ensure: [Function]#
 	nodules = require('nodules');
@@ -288,13 +294,24 @@ loads array of modules async and callsback when they are ready.
 see http://wiki.commonjs.org/wiki/Modules/Async/A
 
 , runAsMain: [Function]
-, usingEngine: 'node'
+#usingEngine: 'node'#
+will be set to either 'node' or 'narwhal'
+
 , useLocal: [Function]
 , usePackage: [Function]
 , getModuleSource: [Function]
-, getCachePath: [Function]
+#getCachePath(id): [Function]#
+returns the path a module is cached at, i.e.
+	
+
+
+
 , baseFilePath: 'downloaded-modules'
-, load: [Function]
+, load(uri,require): [Function]
+loads the source for that URI.
+
+example:
+
 , protocols: 
    { http: [Function]
    , jar: [Function]
