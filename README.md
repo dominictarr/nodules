@@ -278,11 +278,11 @@ nodules exports
 , forEngine: [Function]
 
 #ensure: [Function]#
-
-  require.ensure(['module1','module2'],function cb(require){
-    var module1 = require('module1'),
-	    module1 = require('module1');
-  }
+	nodules = require('nodules');
+	nodules.ensure(['module1','module2'],function cb(require){
+		var module1 = require('module1'),
+		module1 = require('module1');
+	}
 
 loads array of modules async and callsback when they are ready.
 see http://wiki.commonjs.org/wiki/Modules/Async/A
